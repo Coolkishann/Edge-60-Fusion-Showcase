@@ -11,6 +11,11 @@ export default function ScrollSections() {
         />
       </div>
 
+      {/* ===== Hero Counter ===== */}
+      <div className="hero-counter fixed bottom-8 right-8 md:bottom-12 md:right-12 z-[100] text-sm md:text-base tracking-[0.2em] font-light text-white opacity-0">
+        0%
+      </div>
+
       {/* ===== Navigation ===== */}
       <nav className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-8 py-6 pointer-events-none">
         <div className="pointer-events-auto">
@@ -44,7 +49,7 @@ export default function ScrollSections() {
       <div className="scroll-wrapper relative z-10">
         {/* ---------- Section 1: Hero ---------- */}
         <section className="hero-section h-screen flex flex-col items-center justify-center px-6 relative">
-          <div className="text-center">
+          <div className="text-center hero-content">
             <p className="text-[10px] md:text-xs tracking-[0.5em] uppercase text-white/90 mb-6 md:mb-8">
               Interactive 3D Experience
             </p>

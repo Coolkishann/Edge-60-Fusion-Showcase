@@ -164,6 +164,7 @@ export default function SceneCanvas() {
       cameraZ: 7,
       cameraY: 0,
       posX: 0,
+      burstFactor: 5, // Start widely scattered
     };
 
     /* ---------- Mouse ---------- */
@@ -174,10 +175,71 @@ export default function SceneCanvas() {
     };
     window.addEventListener("mousemove", onMouseMove);
 
-    /* ---------- GSAP Timeline ---------- */
+    /* ---------- GSAP Setup ---------- */
     const wrapper = document.querySelector(".scroll-wrapper");
 
+    // Initially hide scrollbar and hero text
+    document.body.style.overflow = "hidden";
+    gsap.set(".hero-content, .scroll-indicator-wrap", { 
+      opacity: 0, 
+      y: 30 
+    });
+    gsap.set(".hero-counter", { opacity: 1 });
+
     if (wrapper) {
+      /* ---- Intro Animation (Gather, Burst, & Count) ---- */
+      const introTl = gsap.timeline({
+        onComplete: () => {
+          // Restore scrolling once intro is done
+          document.body.style.overflow = "";
+        }
+      });
+
+      const countState = { val: 0 };
+
+      // 1) Counter goes from 0 to 100 over 3 seconds
+      introTl.to(countState, {
+        val: 100,
+        duration: 3,
+        ease: "power2.inOut",
+        onUpdate: () => {
+          const el = document.querySelector(".hero-counter");
+          if (el) el.textContent = Math.floor(countState.val) + "%";
+        }
+      }, 0);
+
+      // 2) Particles collect to center (2.5 -> 0.0)
+      introTl.to(state, {
+        burstFactor: 0.001,
+        duration: 1.5,
+        ease: "power3.in"
+      }, 0);
+
+      // 3) Particles burst outwards (0.0 -> 1.0)
+      introTl.to(state, {
+        burstFactor: 1.0,
+        duration: 1.5,
+        ease: "expo.out"
+      }, 1.5);
+
+      // 4) Rotation spin during the whole process
+      introTl.fromTo(state, 
+        { rotationY: Math.PI }, 
+        { rotationY: 0, duration: 3, ease: "power2.inOut" }, 
+        0
+      );
+
+      // 5) Fade out counter, fade in hero content
+      introTl.to(".hero-counter", { opacity: 0, duration: 0.5 }, 3.0);
+      introTl.to(".hero-content, .scroll-indicator-wrap", {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
+        stagger: 0.2,
+        ease: "power2.out"
+      }, 3.0);
+
+      /* ---- Scroll Animation ---- */
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wrapper,
@@ -350,9 +412,9 @@ export default function SceneCanvas() {
         // Smoothstep interpolation
         const s = blend * blend * (3 - 2 * blend);
 
-        const tx = from[i3] + (to[i3] - from[i3]) * s;
-        const ty = from[i3 + 1] + (to[i3 + 1] - from[i3 + 1]) * s;
-        const tz = from[i3 + 2] + (to[i3 + 2] - from[i3 + 2]) * s;
+        const tx = (from[i3] + (to[i3] - from[i3]) * s) * state.burstFactor;
+        const ty = (from[i3 + 1] + (to[i3 + 1] - from[i3 + 1]) * s) * state.burstFactor;
+        const tz = (from[i3 + 2] + (to[i3 + 2] - from[i3 + 2]) * s) * state.burstFactor;
 
         // Very subtle organic drift
         const n = 0.006;
