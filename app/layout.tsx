@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Scroll Waypoints — Interactive 3D Experience",
+  title: "NOVASHAPE — Interactive 3D Experience",
   description:
     "A premium scroll-driven 3D storytelling website where particles intelligently transform through shapes synchronized with motion-rich content.",
   keywords: [
