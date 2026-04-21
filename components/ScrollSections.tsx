@@ -20,7 +20,7 @@ export default function ScrollSections() {
       <nav className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-8 py-6 pointer-events-none">
         <div className="pointer-events-auto">
           <span className="text-sm font-light tracking-[0.25em] text-white/70 hover:text-white transition-colors duration-300 cursor-pointer">
-            SW
+            NOVASHAPE
           </span>
         </div>
         <div className="pointer-events-auto hidden md:flex items-center gap-8">
