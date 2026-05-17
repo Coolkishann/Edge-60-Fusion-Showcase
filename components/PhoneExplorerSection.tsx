@@ -1,10 +1,11 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, ContactShadows, OrbitControls } from "@react-three/drei";
+import { ContactShadows } from "@react-three/drei";
 import { Suspense, useRef, useState, useEffect, useCallback, useMemo } from "react";
 import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
+import { Environment, Lightformer, OrbitControls, useGLTF } from "@react-three/drei";
 
 // ─── GLB Paths (URL-encoded for spaces) ────────────────────────────
 const MODELS = {
@@ -189,14 +190,20 @@ function SceneContent({
 }) {
   return (
     <>
+      {/* Procedural Environment for Beautiful PBR Reflections without HDR downloads */}
+      <Environment resolution={256}>
+        <group rotation={[-Math.PI / 2, 0, 0]}>
+          <Lightformer intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={[10, 10, 1]} />
+          <Lightformer intensity={2} rotation-x={Math.PI / 2} position={[0, 5, 9]} scale={[10, 10, 1]} />
+          <Lightformer intensity={2} rotation-y={Math.PI / 2} position={[-9, 1, 0]} scale={[10, 2, 1]} />
+          <Lightformer intensity={2} rotation-y={-Math.PI / 2} position={[9, 1, 0]} scale={[10, 2, 1]} />
+        </group>
+      </Environment>
+
       {/* Lighting */}
       <ambientLight intensity={0.5} />
-      <directionalLight position={[5, 5, 5]} intensity={0.8} />
-      <directionalLight position={[-3, 3, 3]} intensity={0.3} />
-
-      <directionalLight position={[0, 10, 0]} intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
-      <spotLight position={[-10, 5, 0]} angle={0.15} penumbra={1} intensity={0.5} />
+      <directionalLight position={[5, 5, 5]} intensity={1} />
+      <directionalLight position={[-3, 3, 3]} intensity={0.5} />
 
       {/* Shadow */}
       <ContactShadows
@@ -343,7 +350,7 @@ export default function PhoneExplorerSection() {
                         {feature.label}
                       </span>
                       {/* Expand/Collapse indicator */}
-                      <svg
+                      {/* <svg
                         width="16"
                         height="16"
                         viewBox="0 0 24 24"
@@ -358,7 +365,7 @@ export default function PhoneExplorerSection() {
                           }`}
                       >
                         <polyline points="6 9 12 15 18 9" />
-                      </svg>
+                      </svg> */}
                     </button>
 
                     {/* Expanded Content */}
@@ -423,7 +430,7 @@ export default function PhoneExplorerSection() {
           </div>
 
           {/* Right: 3D Viewer */}
-          <div className="flex-1 relative w-full" style={{ minHeight: "70vh" }}>
+          <div className="flex-1 relative w-full mt-20" style={{ minHeight: "70vh" }}>
             {isInView ? (
               <div className="relative w-full" style={{ height: "70vh" }}>
                 <Canvas

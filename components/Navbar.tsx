@@ -13,12 +13,12 @@ const menuItems = [
   { label: "Instagram", href: "https://www.instagram.com/__kishxnnn/", image: "/instagram.png", isRounded: false },
 ];
 
-const socialIcons = [
-  { id: "x", icon: "𝕏" },
-  { id: "instagram", icon: "" },
-  { id: "dribbble", icon: "" },
-  { id: "linkedin", icon: "" },
-];
+// const socialIcons = [
+//   { id: "x", icon: "𝕏" },
+//   { id: "instagram", icon: "" },
+//   { id: "dribbble", icon: "" },
+//   { id: "linkedin", icon: "" },
+// ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
