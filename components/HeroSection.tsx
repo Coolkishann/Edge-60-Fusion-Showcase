@@ -26,8 +26,8 @@ export default function HeroSection({ shouldPlay = true }: HeroSectionProps) {
       <video
         ref={videoRef}
         muted
-        
         playsInline
+        title="Moto Edge 60 Fusion Showcase Video"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/mov1.mp4" type="video/mp4" />
@@ -42,12 +42,15 @@ export default function HeroSection({ shouldPlay = true }: HeroSectionProps) {
         >
           {/* Brand Logo/Title */}
           <div className="flex flex-col items-end gap-0">
-            <h1 className="text-6xl md:text-8xl font-medium text-white tracking-[-0.04em] leading-none mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>
-              edge 60
+            <h1 className="flex flex-col items-end">
+              <span className="sr-only">Moto Edge 60 Fusion</span>
+              <span className="text-6xl md:text-8xl font-medium text-white tracking-[-0.04em] leading-none mb-2" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                edge 60
+              </span>
+              <span className="text-5xl md:text-7xl font-light tracking-[0.15em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-white/40 mb-6" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                FUSION
+              </span>
             </h1>
-            <h2 className="text-5xl md:text-7xl font-light tracking-[0.15em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-white/40 mb-6" style={{ fontFamily: "'Outfit', sans-serif" }}>
-              FUSION
-            </h2>
           </div>
 
           <motion.div

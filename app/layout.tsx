@@ -73,6 +73,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              "name": "Moto Edge 60 Fusion",
+              "image": "https://dev-kishan.vercel.app/img3.png",
+              "description": "Explore the new Moto Edge 60 Fusion in stunning 3D. A premium, interactive scrollytelling experience showcasing the 50MP camera.",
+              "brand": {
+                "@type": "Brand",
+                "name": "Motorola"
+              },
+              "author": {
+                "@type": "Person",
+                "name": "Kishan Vishwakarma",
+                "url": "https://dev-kishan.vercel.app/"
+              }
+            })
+          }}
+        />
+      </head>
       <body className="antialiased">{children}</body>
     </html>
   );
