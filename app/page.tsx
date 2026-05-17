@@ -4,7 +4,11 @@ import Lenis from "@studio-freight/lenis";
 import HeroSection from "@/components/HeroSection";
 import HighlightsSection from "@/components/HighlightsSection";
 import DesignSection from "@/components/DesignSection";
-import PhoneExplorerSection from "@/components/PhoneExplorerSection";
+import dynamic from "next/dynamic";
+
+const PhoneExplorerSection = dynamic(() => import("@/components/PhoneExplorerSection"), {
+  ssr: false,
+});
 import CameraSection from "@/components/CameraSection";
 import MobileScroll from "@/components/MobileScroll";
 import FeatureVideoSection from "@/components/FeatureVideoSection";
@@ -98,7 +102,7 @@ export default function Home() {
       <footer className="bg-black py-20 px-10 border-t border-white/10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-white/40 text-sm">
-            © 2024 Motorola Mobility LLC. All Rights Reserved.
+            © 2026 Motorola Mobility LLC. All Rights Reserved.
           </div>
           <div className="flex gap-8 text-white/60 text-sm">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

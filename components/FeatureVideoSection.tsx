@@ -8,6 +8,7 @@ export default function FeatureVideoSection() {
       <div className="max-w-6xl w-full">
         <div className="relative w-full aspect-video rounded-[40px] overflow-hidden shadow-2xl">
           <video
+            preload="none"
             autoPlay
             muted
             loop
@@ -35,7 +36,7 @@ export default function FeatureVideoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-xl md:text-2xl text-[#86868b] max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-[#6b6b70] max-w-3xl mx-auto leading-relaxed"
           >
             Powered by the <span className="text-[#1d1d1f] font-medium">MediaTek Dimensity processor</span>, Moto Edge 60 Fusion delivers blazing-fast speeds for everything you do. With advanced AI features and massive storage, it's built to keep up with your lifestyle.
           </motion.p>

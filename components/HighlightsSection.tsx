@@ -83,6 +83,7 @@ export default function HighlightsSection() {
 
             {item.video ? (
               <video
+                preload="none"
                 autoPlay
                 muted
                 loop

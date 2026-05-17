@@ -21,7 +21,7 @@ export default function DesignSection() {
     <section ref={sectionRef} className="bg-white py-32 flex flex-col items-center overflow-hidden">
       <div className="max-w-7xl w-full px-6">
         <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-8">
-          <p className="text-[#86868b] text-lg font-medium">Design</p>
+          <p className="text-[#6b6b70] text-lg font-medium">Design</p>
           <ScrollRevealText 
             text={"Curved to perfection.\nDesigned to dazzle."}
             className="text-4xl md:text-6xl font-semibold tracking-tight max-w-2xl"
@@ -42,10 +42,10 @@ export default function DesignSection() {
 
       <div className="max-w-5xl w-full px-6 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-[#1d1d1f]">
-          <p className="text-xl md:text-2xl leading-relaxed text-[#86868b]">
+          <p className="text-xl md:text-2xl leading-relaxed text-[#6b6b70]">
             The <span className="text-[#1d1d1f] font-medium">Moto Edge 60 Fusion</span> features a breathtaking curved pOLED display that flows into a precision-crafted frame. It's thin, light, and feels natural in your hand.
           </p>
-          <p className="text-xl md:text-2xl leading-relaxed text-[#86868b]">
+          <p className="text-xl md:text-2xl leading-relaxed text-[#6b6b70]">
             Experience the perfect balance of aesthetics and ergonomics. With a glass back and premium finishes, it's not just a phone—it's a statement.
           </p>
         </div>

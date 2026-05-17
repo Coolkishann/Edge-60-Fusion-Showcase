@@ -12,6 +12,7 @@ export default function DisplaySection() {
           {/* Left: Large Video Container */}
           <div className="lg:col-span-8 relative rounded-3xl overflow-hidden group shadow-sm bg-[#f5f5f7] aspect-video">
             <video
+              preload="none"
               autoPlay
               muted
               loop
@@ -48,7 +49,7 @@ export default function DisplaySection() {
             className="text-2xl md:text-4xl font-bold tracking-tight mb-4"
           />
           <div className="max-w-3xl mx-auto">
-            <p className="text-sm md:text-base text-[#86868b] leading-relaxed">
+            <p className="text-sm md:text-base text-[#6b6b70] leading-relaxed">
               The <span className="text-black font-semibold">6.7" Super HD pOLED display</span> has a brightness of <span className="text-black font-semibold">up to 4500 nits<sup>1</sup>, 2.8x more than previous generations<sup>3</sup></span>, ensuring clear images even in bright light. With <span className="text-black font-semibold">HDR10+ and Pantone™ Validated Colors</span>, it displays more than 1 billion colors with cinematic accuracy and true skin tones.
             </p>
           </div>

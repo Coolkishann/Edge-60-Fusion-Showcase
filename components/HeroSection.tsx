@@ -25,6 +25,7 @@ export default function HeroSection({ shouldPlay = true }: HeroSectionProps) {
       {/* Video Background */}
       <video
         ref={videoRef}
+        preload="metadata"
         muted
         playsInline
         title="Moto Edge 60 Fusion Showcase Video"

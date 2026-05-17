@@ -10,17 +10,17 @@ import { Environment, Lightformer, OrbitControls, useGLTF } from "@react-three/d
 // ─── GLB Paths (URL-encoded for spaces) ────────────────────────────
 const MODELS = {
   cinza: {
-    path: "/Edge%2060%20Fusion_Cinza_V2.glb",
+    path: "/Edge60_Fusion_Cinza_V2-v1.glb",
     label: "Cinza Grey",
     swatch: "#A8B0B8",
   },
   mocha: {
-    path: "/Edge%2060%20Fusion_Mocha_V2.glb",
+    path: "/Edge60_Fusion_Mocha_V2-v1.glb",
     label: "Mocha Brown",
     swatch: "#8B6F5E",
   },
   rosa: {
-    path: "/Edge%2060%20Fusion_Rosa_V4.glb",
+    path: "/Edge60_Fusion_Rosa_V4-v1.glb",
     label: "Rosa Pink",
     swatch: "#E8B4B8",
   },
