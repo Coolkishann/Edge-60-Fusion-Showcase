@@ -12,13 +12,7 @@ html {
 }
 
 body {
-  background: #050505;
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    #0a0a12 0%,
-    #050507 60%,
-    #000000 100%
-  );
+  background: #000000;
   color: #ffffff;
   overflow-x: hidden;
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
