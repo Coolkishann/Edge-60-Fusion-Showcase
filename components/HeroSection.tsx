@@ -28,7 +28,7 @@ export default function HeroSection({ shouldPlay = true }: HeroSectionProps) {
         preload="metadata"
         muted
         playsInline
-        title="Moto Edge 60 Fusion Showcase Video"
+        // title="Moto Edge 60 Fusion Showcase Video"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/mov1.mp4" type="video/mp4" />
