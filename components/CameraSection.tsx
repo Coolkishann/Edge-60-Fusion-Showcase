@@ -5,7 +5,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import ScrollRevealText from "./ScrollRevealText";
 
-const MotionImage = motion(Image);
+const MotionImage = motion.create(Image);
 
 export default function CameraSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -13,12 +13,12 @@ export default function CameraSection() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  
+
   // Moves the image slightly up/down based on scroll position
   const imgY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
-    <section ref={sectionRef} className="bg-[#f2f2f2] py-32 flex flex-col items-center overflow-hidden">
+    <section ref={sectionRef} className="relative bg-[#f2f2f2] py-32 flex flex-col items-center overflow-hidden">
       {/* Top Text Section */}
       <div className="max-w-7xl w-full px-6 mb-20 flex flex-col items-center text-center">
         <motion.div
@@ -46,7 +46,7 @@ export default function CameraSection() {
           className="relative w-full rounded-[40px] overflow-hidden"
         >
           <MotionImage
-            src="/img7.png"
+            src="/img7.webp"
             alt="Moto Edge 60 Fusion Camera Close-up"
             width={1200}
             height={800}
@@ -67,7 +67,7 @@ export default function CameraSection() {
         >
           With over a decade of hardware and software innovations, Moto Edge has become a photography powerhouse. The Edge 60 Fusion continues this legacy with its powerful 50MP camera system that works like multiple advanced cameras in one. Shoot in super-high-resolution, capture stunning low-light portraits, and record cinematic video effortlessly.
         </motion.p>
-      
+
       </div>
       <div className="max-w-4xl w-full px-6 flex flex-col items-center text-center relative mt-12">
         {/* Floating Button */}

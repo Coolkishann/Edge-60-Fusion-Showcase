@@ -18,7 +18,7 @@ export default function ScrollRevealText({ text, className = "" }: ScrollRevealT
   });
 
   return (
-    <div ref={containerRef} className={className}>
+    <div ref={containerRef} className={`relative ${className}`}>
       <h2 className="leading-tight">
         {lines.map((line, i) => (
           <Line key={i} line={line} index={i} total={lines.length} progress={scrollYProgress} />
@@ -36,18 +36,12 @@ function Line({ line, index, total, progress }: { line: string, index: number, t
   const color = useTransform(
     progress,
     [start, end],
-    ["#86868b/40", "#1d1d1f"]
-  );
-
-  const opacity = useTransform(
-    progress,
-    [start, start + 0.1],
-    [0.3, 1]
+    ["#6b6b70", "#1d1d1f"]
   );
 
   return (
     <motion.span 
-      style={{ color, opacity }} 
+      style={{ color }} 
       className="block transition-colors duration-200"
     >
       {line}

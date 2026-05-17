@@ -6,7 +6,7 @@ import {
   useState,
   useCallback,
 } from "react";
-import { useScroll, useTransform, useMotionValueEvent, motion } from "framer-motion";
+import { useScroll, useTransform, useMotionValueEvent, motion, useInView } from "framer-motion";
 import { useImageSequence } from "@/hooks/useImageSequence";
 import { drawImageContain } from "@/utils/drawImageContain";
 import OverlayText from "@/components/OverlayText";
@@ -83,12 +83,12 @@ const overlays = [
 ];
 
 // ─── Loading Spinner Component ─────────────────────────────────────
-function LoadingSpinner({ progress }: { progress: number }) {
+export function LoadingSpinner({ progress }: { progress: number }) {
   const circumference = 2 * Math.PI * 40;
   const dashOffset = circumference - (progress / 100) * circumference;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#f3f2f2]">
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#f5f5f7]">
       {/* Ambient glow */}
       <div className="absolute w-[400px] h-[400px] rounded-full bg-white/[0.02] blur-[100px]" />
 
@@ -136,7 +136,7 @@ function LoadingSpinner({ progress }: { progress: number }) {
 }
 
 // ─── Main Component ────────────────────────────────────────────────
-export default function MobileScroll({ onLoadComplete }: { onLoadComplete?: () => void }) {
+export default function MobileScroll({ onLoadComplete, onProgress }: { onLoadComplete?: () => void, onProgress?: (p: number) => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const currentFrameRef = useRef(-1);
@@ -149,8 +149,13 @@ export default function MobileScroll({ onLoadComplete }: { onLoadComplete?: () =
   const { images, isLoaded, progress } = useImageSequence(
     BASE_PATH,
     getFrameFilename,
-    TOTAL_FRAMES
+    TOTAL_FRAMES,
+    true // load immediately
   );
+
+  useEffect(() => {
+    if (onProgress) onProgress(progress);
+  }, [progress, onProgress]);
 
   useEffect(() => {
     if (isLoaded && onLoadComplete) {
@@ -269,27 +274,19 @@ export default function MobileScroll({ onLoadComplete }: { onLoadComplete?: () =
   }, []);
 
   return (
-    <>
-      {/* Loading screen */}
-      {!isLoaded && <LoadingSpinner progress={progress} />}
+    <div
+      ref={containerRef}
+      className="relative"
+      style={{
+        height: "600vh",
+      }}
+    >
+      {/* Sticky viewport */}
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden bg-[#f2f2f2]">
+        
+        {/* Loading screen removed from here since it will be at the app level */}
 
-      {/* Scroll container — tall to provide scroll room */}
-      <div
-        ref={containerRef}
-        className="relative"
-        style={{
-          height: "600vh",
-          opacity: isLoaded ? 1 : 0,
-          transition: "opacity 0.8s ease-out",
-        }}
-      >
-        {/* Sticky viewport */}
-        <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden bg-[#f2f2f2]">
-          {/* Background matching image bg */}
-          {/* <div
-            className="absolute inset-0 -z-10 bg-[#ffffff]"
-          /> */}
-
+        <div style={{ opacity: isLoaded ? 1 : 0, transition: "opacity 0.8s ease-out", width: "100%", height: "100%" }}>
           {/* Canvas */}
           <motion.div
             style={{ y: canvasY, opacity: canvasOpacity }}
@@ -318,10 +315,9 @@ export default function MobileScroll({ onLoadComplete }: { onLoadComplete?: () =
               />
             ))}
           </div>
-          {/* <ScrollIndicator scrollProgress={scrollYProgress} /> */}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

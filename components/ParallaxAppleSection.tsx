@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 export default function ParallaxAppleSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,10 +40,11 @@ export default function ParallaxAppleSection() {
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col items-center"
         >
-          {/* Motorola 'M' Logo Placeholder / SVG */}
-          <img
-            src="/logo-m.png"
+          <Image
+            src="/logo-m.webp"
             alt="Motorola Logo"
+            width={72}
+            height={72}
             className="h-18 w-auto object-contain"
           />
 

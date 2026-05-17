@@ -10,7 +10,7 @@ const PhoneExplorerSection = dynamic(() => import("@/components/PhoneExplorerSec
   ssr: false,
 });
 import CameraSection from "@/components/CameraSection";
-import MobileScroll from "@/components/MobileScroll";
+import MobileScroll, { LoadingSpinner } from "@/components/MobileScroll";
 import FeatureVideoSection from "@/components/FeatureVideoSection";
 import ParallaxAppleSection from "@/components/ParallaxAppleSection";
 import DisplaySection from "@/components/DisplaySection";
@@ -22,7 +22,7 @@ import Image from "next/image";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
-
+  const [progress, setProgress] = useState(0);
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -49,6 +49,7 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-white">
+      {!isLoaded && <LoadingSpinner progress={progress} />}
       {/* <motion.div
         initial={{ height: "100vh" }}
         animate={{ height: "0vh" }}
@@ -79,7 +80,10 @@ export default function Home() {
 
       {/* Section 4: Image Sequence Scroll */}
       <div className="bg-transparent">
-        <MobileScroll onLoadComplete={() => setIsLoaded(true)} />
+        <MobileScroll 
+          onLoadComplete={() => setIsLoaded(true)} 
+          onProgress={setProgress}
+        />
       </div>
       {/* New Section: Camera Deep Dive */}
       {/* <CameraSection /> */}

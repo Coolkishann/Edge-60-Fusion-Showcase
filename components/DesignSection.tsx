@@ -5,7 +5,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import ScrollRevealText from "./ScrollRevealText";
 
-const MotionImage = motion(Image);
+const MotionImage = motion.create(Image);
 
 export default function DesignSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -13,16 +13,16 @@ export default function DesignSection() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  
+
   // Moves the image slightly up/down based on scroll position
   const imgY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
-    <section ref={sectionRef} className="bg-white py-32 flex flex-col items-center overflow-hidden">
+    <section ref={sectionRef} className="relative bg-white py-32 flex flex-col items-center overflow-hidden">
       <div className="max-w-7xl w-full px-6">
         <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-8">
           <p className="text-[#6b6b70] text-lg font-medium">Design</p>
-          <ScrollRevealText 
+          <ScrollRevealText
             text={"Curved to perfection.\nDesigned to dazzle."}
             className="text-4xl md:text-6xl font-semibold tracking-tight max-w-2xl"
           />
@@ -31,7 +31,7 @@ export default function DesignSection() {
 
       <div className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
         <MotionImage
-          src="/img3.png"
+          src="/img3.webp"
           alt="Moto Edge 60 Fusion in hand"
           width={1920}
           height={1080}

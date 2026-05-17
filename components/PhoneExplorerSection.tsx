@@ -5,7 +5,7 @@ import { ContactShadows } from "@react-three/drei";
 import { Suspense, useRef, useState, useEffect, useCallback, useMemo } from "react";
 import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
-import { Environment, Lightformer, OrbitControls, useGLTF } from "@react-three/drei";
+import { Environment, Lightformer, OrbitControls, useGLTF, useProgress } from "@react-three/drei";
 
 // ─── GLB Paths (URL-encoded for spaces) ────────────────────────────
 const MODELS = {
@@ -167,15 +167,53 @@ function PhoneModel({
 }
 
 // ─── Loading Indicator ─────────────────────────────────────────────
-function ModelLoader() {
+function ModelSkeletonLoader() {
   return (
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="flex flex-col items-center gap-4">
-        <div className="w-10 h-10 border-2 border-[#1d1d1f]/10 border-t-[#1d1d1f]/60 rounded-full animate-spin" />
-        <span className="text-[#86868b] text-sm font-light tracking-widest uppercase">
-          Loading Model
-        </span>
+    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-[#f5f5f7] to-[#e8e8ed] rounded-[24px] overflow-hidden border border-white/40 shadow-[inset_0_0_80px_rgba(255,255,255,0.6)]">
+      {/* Background Ambient Glow */}
+      <div className="absolute w-72 h-72 rounded-full bg-black/[0.01] blur-3xl animate-pulse" />
+      
+      {/* Elegant Phone Skeleton Silhouette */}
+      <div className="relative w-44 h-80 rounded-[2.5rem] border-[4px] border-[#e8e8ed] bg-white/45 backdrop-blur-md shadow-2xl flex flex-col items-center justify-between p-6 overflow-hidden">
+        {/* Shimmer overlay */}
+        <motion.div
+          className="absolute inset-0 z-10"
+          style={{
+            background: "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.65) 50%, rgba(255,255,255,0) 100%)",
+            width: "50%",
+          }}
+          animate={{
+            x: ["-100%", "300%"]
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 1.6,
+            ease: "linear"
+          }}
+        />
+        
+        {/* Camera bump outline at top */}
+        <div className="w-14 h-3.5 rounded-full bg-[#e8e8ed]/80 flex items-center justify-center">
+          <div className="w-6 h-1.5 rounded-full bg-[#d2d2d7]/50" />
+        </div>
+        
+        {/* Center glowing premium circular loader */}
+        <div className="relative flex items-center justify-center my-auto">
+          {/* Pulsing ring */}
+          <div className="absolute w-14 h-14 rounded-full border border-black/5 animate-ping duration-[1200ms]" />
+          
+          {/* Inner loading ring */}
+          <div className="w-10 h-10 border-2 border-black/[0.04] border-t-black/40 rounded-full animate-spin" />
+        </div>
+        
+        {/* Bottom bar outline */}
+        <div className="w-20 h-1.5 rounded-full bg-[#e8e8ed]/80" />
       </div>
+      
+      {/* Loading text */}
+      <p className="mt-8 text-[#86868b] text-xs font-medium tracking-[0.25em] uppercase select-none flex items-center gap-2 animate-pulse">
+        Generating 3D Phone Preview
+      </p>
     </div>
   );
 }
@@ -238,6 +276,24 @@ export default function PhoneExplorerSection() {
   const [activeColor, setActiveColor] = useState<ModelKey>("cinza");
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  const { active: isThreeLoading } = useProgress();
+  const [modelLoading, setModelLoading] = useState(true);
+
+  // Instantly show skeleton loader when a different color is chosen
+  useEffect(() => {
+    setModelLoading(true);
+  }, [activeColor]);
+
+  // Handle auto-fadeout when ThreeJS is done loading/parsing
+  useEffect(() => {
+    if (!isThreeLoading) {
+      const timer = setTimeout(() => setModelLoading(false), 600);
+      return () => clearTimeout(timer);
+    } else {
+      setModelLoading(true);
+    }
+  }, [isThreeLoading]);
 
   // Intersection observer — lazy-load the 3D canvas
   useEffect(() => {
@@ -432,7 +488,7 @@ export default function PhoneExplorerSection() {
           {/* Right: 3D Viewer */}
           <div className="flex-1 relative w-full mt-20" style={{ minHeight: "70vh" }}>
             {isInView ? (
-              <div className="relative w-full" style={{ height: "70vh" }}>
+              <div className="relative w-full cursor-grab" style={{ height: "70vh" }}>
                 <Canvas
                   camera={{ position: [0, 0, 5], fov: 35 }}
                   style={{
@@ -459,7 +515,7 @@ export default function PhoneExplorerSection() {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 backdrop-blur-xl rounded-full px-4 py-2.5 shadow-[0_4px_24px_rgba(0,0,0,0.08)]"
+                    className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 backdrop-blur-xl rounded-full px-4 py-2.5 shadow-[0_4px_24px_rgba(0,0,0,0.08)] z-10"
                   >
                     {(
                       Object.entries(MODELS) as [
@@ -480,9 +536,23 @@ export default function PhoneExplorerSection() {
                     ))}
                   </motion.div>
                 )}
+
+                {/* Premium Smooth Skeleton Loader Overlay */}
+                <AnimatePresence>
+                  {modelLoading && (
+                    <motion.div
+                      initial={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className="absolute inset-0 z-20 pointer-events-none"
+                    >
+                      <ModelSkeletonLoader />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ) : (
-              <ModelLoader />
+              <ModelSkeletonLoader />
             )}
           </div>
         </div>

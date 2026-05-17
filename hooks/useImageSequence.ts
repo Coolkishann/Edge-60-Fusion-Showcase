@@ -17,7 +17,8 @@ interface UseImageSequenceResult {
 export function useImageSequence(
   basePath: string,
   filenamePattern: (index: number) => string,
-  totalFrames: number
+  totalFrames: number,
+  startLoading: boolean = true
 ): UseImageSequenceResult {
   const [images, setImages] = useState<HTMLImageElement[]>([]);
   const [loadedCount, setLoadedCount] = useState(0);
@@ -79,8 +80,10 @@ export function useImageSequence(
   }, [basePath, filenamePattern, totalFrames]);
 
   useEffect(() => {
-    loadImages();
-  }, [loadImages]);
+    if (startLoading) {
+      loadImages();
+    }
+  }, [loadImages, startLoading]);
 
   return { images, isLoaded, progress, totalFrames, error };
 }

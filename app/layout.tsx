@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "Moto Edge 60 Fusion Showcase",
     images: [
       {
-        url: "/img7.png",
+        url: "/img7.webp",
         width: 1200,
         height: 630,
         alt: "Moto Edge 60 Fusion Smartphone",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Moto Edge 60 Fusion - 3D Showcase",
     description: "Explore the new Moto Edge 60 Fusion in an interactive 3D web experience.",
-    images: ["/img7.png"],
+    images: ["/img7.webp"],
   },
   robots: {
     index: true,
@@ -61,9 +61,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/favicon.webp",
+    shortcut: "/favicon.webp",
+    apple: "/favicon.webp",
   }
 };
 
@@ -82,7 +82,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Product",
               "name": "Moto Edge 60 Fusion",
-              "image": "https://edge-60-fusion-showcase.vercel.app/img7.png",
+              "image": "https://edge-60-fusion-showcase.vercel.app/img7.webp",
               "description": "Explore the new Moto Edge 60 Fusion in stunning 3D. A premium, interactive scrollytelling experience showcasing the 50MP camera.",
               "brand": {
                 "@type": "Brand",

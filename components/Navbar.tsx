@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-const MotionImage = motion(Image);
+const MotionImage = motion.create(Image);
 
 const menuItems = [
-  { label: "Portfolio", href: "https://dev-kishan.vercel.app/", image: "/myomage.jpeg", isRounded: true },
-  { label: "Github", href: "https://github.com/coolkishann", image: "/github.png", isRounded: false },
-  { label: "Linkedln", href: "https://www.linkedin.com/in/kishanvishwakarma1406/", image: "/linkedin.png", isRounded: false },
-  { label: "Instagram", href: "https://www.instagram.com/__kishxnnn/", image: "/instagram.png", isRounded: false },
+  { label: "Portfolio", href: "https://dev-kishan.vercel.app/", image: "/myomage.webp", isRounded: true },
+  { label: "Github", href: "https://github.com/coolkishann", image: "/github.webp", isRounded: false },
+  { label: "Linkedln", href: "https://www.linkedin.com/in/kishanvishwakarma1406/", image: "/linkedin.webp", isRounded: false },
+  { label: "Instagram", href: "https://www.instagram.com/__kishxnnn/", image: "/instagram.webp", isRounded: false },
 ];
 
 // const socialIcons = [
@@ -23,7 +23,7 @@ const menuItems = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  
+
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -65,7 +65,7 @@ export default function Navbar() {
             alt="Motorola Logo"
             width={100}
             height={32}
-            className="h-8 w-auto object-contain"
+            className="object-contain"
           />
         </div>
 
@@ -149,7 +149,7 @@ export default function Navbar() {
                   </div>
                 </div>
 
-          
+
               </div>
             </div>
 
@@ -176,9 +176,8 @@ export default function Navbar() {
                     opacity: { duration: 0.2 },
                     scale: { duration: 0.2 },
                   }}
-                  className={`fixed w-32 h-32 md:w-32 md:h-32 object-cover pointer-events-none z-[100] transform -translate-x-1/2 -translate-y-1/2 ${
-                    menuItems[hoveredIndex].isRounded ? "rounded-full" : "rounded-3xl"
-                  }`}
+                  className={`fixed w-32 h-32 md:w-32 md:h-32 object-cover pointer-events-none z-[100] transform -translate-x-1/2 -translate-y-1/2 ${menuItems[hoveredIndex].isRounded ? "rounded-full" : "rounded-3xl"
+                    }`}
                 />
               )}
             </AnimatePresence>
