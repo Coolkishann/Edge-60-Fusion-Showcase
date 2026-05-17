@@ -45,8 +45,7 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-white">
-      {/* Premium Initial Page Transition (Curtain Effect) */}
-      <motion.div
+      {/* <motion.div
         initial={{ height: "100vh" }}
         animate={{ height: "0vh" }}
         transition={{ duration: 1, ease: [0.76, 0, 0.24, 1], delay: 0.5 }}
@@ -59,7 +58,7 @@ export default function Home() {
         >
           <Image src="/motorola-seeklogo.svg" alt="Motorola Logo" width={200} height={48} className="h-12 w-auto invert opacity-80" priority />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
 
       <Navbar />
 

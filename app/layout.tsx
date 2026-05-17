@@ -9,6 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://edge-60-fusion-showcase.vercel.app"),
   title: "Moto Edge 60 Fusion | Interactive 3D Experience by Kishan",
   description:
     "Explore the new Moto Edge 60 Fusion in stunning 3D. A premium, interactive scrollytelling experience showcasing the 50MP camera, Quad-Curve Display, and ultra-thin design.",
@@ -29,13 +30,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://dev-kishan.vercel.app/",
+    url: "https://edge-60-fusion-showcase.vercel.app/",
     title: "Moto Edge 60 Fusion - 3D Interactive Showcase",
     description: "Discover the Moto Edge 60 Fusion. An immersive 3D web experience built by Kishan Vishwakarma.",
     siteName: "Moto Edge 60 Fusion Showcase",
     images: [
       {
-        url: "/img3.png",
+        url: "/img7.png",
         width: 1200,
         height: 630,
         alt: "Moto Edge 60 Fusion Smartphone",
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Moto Edge 60 Fusion - 3D Showcase",
     description: "Explore the new Moto Edge 60 Fusion in an interactive 3D web experience.",
-    images: ["/img3.png"],
+    images: ["/img7.png"],
   },
   robots: {
     index: true,
@@ -81,7 +82,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Product",
               "name": "Moto Edge 60 Fusion",
-              "image": "https://dev-kishan.vercel.app/img3.png",
+              "image": "https://edge-60-fusion-showcase.vercel.app/img7.png",
               "description": "Explore the new Moto Edge 60 Fusion in stunning 3D. A premium, interactive scrollytelling experience showcasing the 50MP camera.",
               "brand": {
                 "@type": "Brand",

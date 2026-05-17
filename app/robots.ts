@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://dev-kishan.vercel.app/sitemap.xml',
+    sitemap: 'https://edge-60-fusion-showcase.vercel.app/sitemap.xml',
   }
 }
