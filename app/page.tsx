@@ -14,6 +14,7 @@ import ValuesSection from "@/components/ValuesSection";
 import Navbar from "@/components/Navbar";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -56,7 +57,7 @@ export default function Home() {
           animate={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <img src="/motorola-seeklogo.svg" alt="Logo" className="h-12 w-auto invert opacity-80" />
+          <Image src="/motorola-seeklogo.svg" alt="Motorola Logo" width={200} height={48} className="h-12 w-auto invert opacity-80" priority />
         </motion.div>
       </motion.div>
 

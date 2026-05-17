@@ -2,7 +2,10 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import ScrollRevealText from "./ScrollRevealText";
+
+const MotionImage = motion(Image);
 
 export default function DesignSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -27,9 +30,11 @@ export default function DesignSection() {
       </div>
 
       <div className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
-        <motion.img
+        <MotionImage
           src="/img3.png"
           alt="Moto Edge 60 Fusion in hand"
+          width={1920}
+          height={1080}
           style={{ y: imgY, scale: 1.2 }}
           className="w-full h-full object-cover transform-gpu origin-center"
         />
@@ -46,8 +51,8 @@ export default function DesignSection() {
         </div>
 
         <div className="mt-16 flex justify-center">
-          <button className="flex items-center gap-3 bg-[#f5f5f7] px-8 py-4 rounded-full text-[#1d1d1f] font-medium hover:bg-[#e8e8ed] transition-all">
-            Explore the design <span className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-sm">+</span>
+          <button aria-label="Explore the design of Moto Edge 60 Fusion" className="flex items-center gap-3 bg-[#f5f5f7] px-8 py-4 rounded-full text-[#1d1d1f] font-medium hover:bg-[#e8e8ed] transition-all group">
+            Explore the design <span aria-hidden="true" className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-sm group-hover:scale-110 transition-transform">+</span>
           </button>
         </div>
       </div>

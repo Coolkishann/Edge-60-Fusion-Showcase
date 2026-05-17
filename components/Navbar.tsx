@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+
+const MotionImage = motion(Image);
 
 const menuItems = [
   { label: "Portfolio", href: "https://dev-kishan.vercel.app/", image: "/myomage.jpeg", isRounded: true },
@@ -57,15 +60,19 @@ export default function Navbar() {
       >
         {/* Logo */}
         <div className="flex items-center cursor-pointer">
-          <img
+          <Image
             src="/motorola-seeklogo.svg"
             alt="Motorola Logo"
+            width={100}
+            height={32}
             className="h-8 w-auto object-contain"
           />
         </div>
 
         {/* Menu Toggle */}
         <button
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
           onClick={() => setIsOpen(!isOpen)}
           className={`relative px-6 py-2 rounded-full border border-black/10 flex items-center justify-center transition-all duration-300 z-[101] ${isOpen ? "bg-white" : "bg-white/50 backdrop-blur-md"
             }`}
@@ -149,10 +156,12 @@ export default function Navbar() {
             {/* Floating Cursor Image */}
             <AnimatePresence>
               {hoveredIndex !== null && (
-                <motion.img
+                <MotionImage
                   key="cursor-image"
                   src={menuItems[hoveredIndex].image}
                   alt={menuItems[hoveredIndex].label}
+                  width={200}
+                  height={200}
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{
                     opacity: 1,
