@@ -13,12 +13,14 @@ const highlights = [
     title: "144Hz pOLED Curved Display.",
     subtitle: "Immersive beyond boundaries.",
     video: "/mov2.mp4",
+    poster: "/img1.webp",
   },
   {
     id: 2,
     title: "50MP OIS Ultra Pixel Camera.",
     subtitle: "Crystal clear shots, every time.",
     video: "/mov6.mp4",
+    poster: "/img2.webp",
   },
   {
     id: 3,
@@ -88,6 +90,7 @@ export default function HighlightsSection() {
                 muted
                 loop
                 playsInline
+                poster={item.poster}
                 className="w-full h-full object-cover"
               >
                 <source src={item.video} type="video/mp4" />

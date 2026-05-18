@@ -25,6 +25,7 @@ export default function FeatureVideoSection() {
             muted
             loop
             playsInline
+            poster="/img1.webp"
             className="w-full h-full object-cover scale-105"
           >
             <source src="/mov2.mp4" type="video/mp4" />

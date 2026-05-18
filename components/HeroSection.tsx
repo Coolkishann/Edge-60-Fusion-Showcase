@@ -28,6 +28,7 @@ export default function HeroSection({ shouldPlay = true }: HeroSectionProps) {
         preload="metadata"
         muted
         playsInline
+        poster="/img7.webp"
         // title="Moto Edge 60 Fusion Showcase Video"
         className="absolute inset-0 w-full h-full object-cover"
       >

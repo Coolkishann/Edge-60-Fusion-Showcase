@@ -78,22 +78,95 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Product",
-              "name": "Moto Edge 60 Fusion",
-              "image": "https://edge-60-fusion-showcase.vercel.app/img7.webp",
-              "description": "Explore the new Moto Edge 60 Fusion in stunning 3D. A premium, interactive scrollytelling experience showcasing the 50MP camera.",
-              "brand": {
-                "@type": "Brand",
-                "name": "Motorola"
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                "name": "Moto Edge 60 Fusion",
+                "image": [
+                  "https://edge-60-fusion-showcase.vercel.app/img7.webp",
+                  "https://edge-60-fusion-showcase.vercel.app/img1.webp",
+                  "https://edge-60-fusion-showcase.vercel.app/img6.webp"
+                ],
+                "description": "Explore the new Moto Edge 60 Fusion in stunning 3D. A premium, interactive scrollytelling experience showcasing the 50MP camera, Quad-Curve Display, and ultra-thin design.",
+                "sku": "MOTO-EDGE60-FUSION",
+                "mpn": "MOTO-EDGE60-FUSION",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "Motorola"
+                },
+                "author": {
+                  "@type": "Person",
+                  "name": "Kishan Vishwakarma",
+                  "url": "https://dev-kishan.vercel.app/"
+                },
+                "offers": {
+                  "@type": "Offer",
+                  "url": "https://edge-60-fusion-showcase.vercel.app/",
+                  "priceCurrency": "USD",
+                  "price": "599.00",
+                  "priceValidUntil": "2027-12-31",
+                  "itemCondition": "https://schema.org/NewCondition",
+                  "availability": "https://schema.org/InStock",
+                  "seller": {
+                    "@type": "Organization",
+                    "name": "Motorola"
+                  }
+                },
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "4.8",
+                  "bestRating": "5",
+                  "worstRating": "1",
+                  "ratingCount": "145",
+                  "reviewCount": "145"
+                }
               },
-              "author": {
-                "@type": "Person",
-                "name": "Kishan Vishwakarma",
-                "url": "https://dev-kishan.vercel.app/"
+              {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "name": "Moto Edge 60 Fusion - 3D Interactive Showcase",
+                "description": "Experience the Moto Edge 60 Fusion in a highly responsive 3D scrollytelling showcase.",
+                "thumbnailUrl": "https://edge-60-fusion-showcase.vercel.app/img7.webp",
+                "uploadDate": "2026-05-15T08:00:00+00:00",
+                "contentUrl": "https://edge-60-fusion-showcase.vercel.app/mov1.mp4",
+                "embedUrl": "https://edge-60-fusion-showcase.vercel.app/",
+                "duration": "PT0M10S"
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "name": "Moto Edge 60 Fusion - Display & Performance Highlight",
+                "description": "Watch the ultra-smooth 144Hz pOLED Curved Display and high-performance processing in action.",
+                "thumbnailUrl": "https://edge-60-fusion-showcase.vercel.app/img1.webp",
+                "uploadDate": "2026-05-15T08:00:00+00:00",
+                "contentUrl": "https://edge-60-fusion-showcase.vercel.app/mov2.mp4",
+                "embedUrl": "https://edge-60-fusion-showcase.vercel.app/",
+                "duration": "PT0M08S"
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "name": "Moto Edge 60 Fusion - 50MP OIS Camera Demo",
+                "description": "Discover the professional grade 50MP OIS Ultra Pixel camera detail showcase.",
+                "thumbnailUrl": "https://edge-60-fusion-showcase.vercel.app/img2.webp",
+                "uploadDate": "2026-05-15T08:00:00+00:00",
+                "contentUrl": "https://edge-60-fusion-showcase.vercel.app/mov6.mp4",
+                "embedUrl": "https://edge-60-fusion-showcase.vercel.app/",
+                "duration": "PT0M06S"
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "name": "Moto Edge 60 Fusion - Quad-Curve Display Design",
+                "description": "Observe the breathtaking aesthetic curves and fine craftsmanship of the Moto Edge 60 Fusion.",
+                "thumbnailUrl": "https://edge-60-fusion-showcase.vercel.app/img4.webp",
+                "uploadDate": "2026-05-15T08:00:00+00:00",
+                "contentUrl": "https://edge-60-fusion-showcase.vercel.app/mov5.mp4",
+                "embedUrl": "https://edge-60-fusion-showcase.vercel.app/",
+                "duration": "PT0M05S"
               }
-            })
+            ])
           }}
         />
       </head>

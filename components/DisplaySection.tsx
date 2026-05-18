@@ -17,6 +17,7 @@ export default function DisplaySection() {
               muted
               loop
               playsInline
+              poster="/img4.webp"
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             >
               <source src="/mov5.mp4" type="video/mp4" />
